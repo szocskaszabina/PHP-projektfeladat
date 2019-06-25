@@ -1,0 +1,40 @@
+{% extends "template.html" %}
+{% block content %}
+<h2 style="text-align: center">Termékek</h2><br>
+<form style="text-align: center" method="get" action="/results">
+    <label>
+      Keresés termék neve szerint: <br>
+      <select name="name">
+            <option></option>
+        {% for name in names %}
+            <option>{{ name }}</option>
+        {% endfor %}
+      </select>
+    </label><br>
+    <label>
+        Keresés termék mérete szerint: <br>
+        <select name="size">
+            <option></option>
+        {% for size in sizes %}
+            <option>
+            {% filter lower %}
+            {{ size }}
+            {% endfilter %}
+            </option>
+        {% endfor %}
+      </select>
+      </label><br>
+      <label>
+        Keresés ár szerint: <br>
+        <input type="number" name="min">-tól
+        <input type="number" name="max">-ig
+
+      </label><br>
+
+    <input type="submit" value="Keresés">
+    
+   
+  </form>
+
+ {% endblock %}
+  

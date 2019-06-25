@@ -1,0 +1,27 @@
+{% extends "template.html" %}
+{% block content %}
+<h2 style="text-align: center">Új termék hozzáadaása</h2><br>
+    <form style="text-align: center" action="/new" method="post">
+        <label>
+            Name: <br>
+            <input type="text" name="name">
+        </label><br>
+        <label>
+            Price: <br>
+            <input type="number" name="price">
+        </label><br>
+        <label>
+            Size: <br>
+            <input type="text" name="size">
+        </label><br>
+        <label>
+            Color: <br>
+            <input type="text" name="color">
+        </label><br>
+        <label>
+            Discount: <br>
+            <input type="number" step="0.01" min="0" max="1" name="discount">
+        </label><br><br>
+        <input type="submit" value="Mentés">
+    </form>
+    {% endblock %}

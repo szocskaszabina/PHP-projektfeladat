@@ -1,0 +1,19 @@
+{
+    "name": "szabina/htdocs",
+    "description": "vizsgafeladat",
+    "authors": [
+        {
+            "name": "szabina.szocska",
+            "email": "szabina.szocska@gmail.com"
+        }
+    ],
+    "require": {
+        "nikic/fast-route": "^1.3",
+        "twig/twig": "^2.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Project\\": "./src"
+        }
+    }
+}

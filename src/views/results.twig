@@ -1,0 +1,66 @@
+{% extends "template.html" %}
+{% block content %}
+<h2 style="text-align: center">Termékek</h2><br>
+<form style="text-align: center" method="get" action="/results">
+    <label>
+      Keresés termék neve szerint: <br>
+      <select name="name" value="{{ query.name }}">
+            <option></option>
+        {% for name in names %}
+            <option>{{ name }}</option>
+        {% endfor %}
+      </select>
+    </label><br>
+    <label>
+        Keresés termék mérete szerint: <br>
+        <select name="size" value="{{ query.size }}">
+            <option></option>
+        {% for size in sizes %}
+            <option>
+            {% filter lower %}
+            {{ size }}
+            {% endfilter %}
+            </option>
+        {% endfor %}
+      </select>
+      </label><br>
+      <label>
+        Keresés ár szerint: <br>
+        <input type="number" name="min" value="{{ query.min}}">-tól
+        <input type="number" name="max" value="{{ query.max}}">-ig
+
+      </label><br>
+
+    <input type="submit" value="Keresés">
+    
+   
+  </form><br>
+  <h3>{{ match }} találat </h3>
+
+<div class="d-flex flex-wrap">
+        {% for clothes in array %}
+            <div style="padding: 10px; width: 250">Termék: {{ clothes.name }}<br>
+            Ár: {{ clothes.price }} Ft<br>
+            Méret: {% filter upper %}
+            {{ clothes.size }}
+            {% endfilter %} <br>
+            Szín: {% filter lower %}
+            {{ clothes.color }}
+            {% endfilter %} 
+            <br> 
+            {% if  clothes.discount > 0 %}
+            Kedvezmény: {{ clothes.discount * 100 }} %<br>
+            <span style="font-weight: bold">KEDVEZMÉNYES ÁR: {{ clothes.discountedPrice }} Ft</span><br>
+            {% endif %}
+            
+            <button><a href="/item/{{ clothes.id }}">Részletek</a></button><br>
+            <form action="/delete-item/{{ clothes.id }}" method="post">
+            <br>
+            <input type="submit" value="Törlés">
+            </form>
+            </div>
+            
+        {% endfor %}
+</div>
+
+ {% endblock %}
